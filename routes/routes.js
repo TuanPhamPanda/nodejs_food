@@ -5,6 +5,7 @@ import {
     createFood,
     updateFood,
     deleteFood,
+    upload
 } from "../controllers/food.js";
 
 import {
@@ -40,10 +41,8 @@ import {
     cancelBillStatus
 } from "../controllers/billstatus.js";
 
-// init express router
 const router = express.Router();
 
-////////////////////////// FOOD ////////////////////////////////
 // get all Food
 router.get("/api/foods", showFoods);
 
@@ -51,7 +50,7 @@ router.get("/api/foods", showFoods);
 router.get("/api/foods/:id", showFoodById);
 
 // create Food
-router.post("/api/foods", createFood);
+router.post("/api/foods",upload.single('food_src'), createFood);
 
 // update Food 
 router.put("/api/foods/:id", updateFood);
