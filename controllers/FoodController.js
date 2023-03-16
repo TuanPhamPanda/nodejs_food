@@ -43,7 +43,7 @@ const storage = multer.diskStorage({
       (item) => item.category === food.food_category
     ).src;
 
-    cb(null, `./images/category`);
+    cb(null, `./images/${category}`);
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname);
@@ -98,9 +98,9 @@ export const createFood = (req, res) => {
 
   food.food_src = `${category}/${food.food_src}`;
 
-  body = `[Object: null prototype] ${JSON.parse(JSON.stringify(food))}`;
+  const query = JSON.stringify(food).replace('{', "").replace("}", "");
 
-  console.log(body);
+  console.log(query);
 
   /*
     insertFood(body, (err, results) => {

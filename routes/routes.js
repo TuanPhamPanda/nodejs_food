@@ -6,12 +6,12 @@ import {
     updateFood,
     deleteFood,
     upload
-} from "../controllers/FoodController";
+} from "../controllers/FoodController.js";
 
 import {
     showAUser,
     createAccount
-} from "../controllers/UserController";
+} from "../controllers/UserController.js";
 
 import {
     addItems,
@@ -20,15 +20,15 @@ import {
     allItems,
     deleteItem,
     deleteItems
-} from "../controllers/CartController";
+} from "../controllers/CartController.js";
 
 import {
     createBooking
-} from "../controllers/BookTableController";
+} from "../controllers/BookTableController.js";
 
 import {
     createBillDetails,getBillDetailsById
-} from "../controllers/BillDetailsController";
+} from "../controllers/BillDetailsController.js";
 
 import {
     showNewestStatusId,
@@ -39,7 +39,7 @@ import {
     updateBillStatus,
     updateBillPaid,
     cancelBillStatus
-} from "../controllers/BillStatusController";
+} from "../controllers/BillStatusController.js";
 
 const router = express.Router();
 
