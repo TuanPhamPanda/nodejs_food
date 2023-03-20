@@ -51,14 +51,18 @@ const storage = multer.diskStorage({
 });
 
 const fileFilter = (req, file, cb) => {
-  if (
-    file.mimetype === "image/jpeg" ||
-    file.mimetype === "image/png" ||
-    file.mimetype === "image/jpg"
-  ) {
-    cb(null, true);
+  if (file === undefined) {
+    return;
   } else {
-    cb(null, false);
+    if (
+      file.mimetype === "image/jpeg" ||
+      file.mimetype === "image/png" ||
+      file.mimetype === "image/jpg"
+    ) {
+      cb(null, true);
+    } else {
+      cb(null, false);
+    }
   }
 };
 
@@ -98,29 +102,42 @@ export const createFood = (req, res) => {
 
   food.food_src = `${category}/${food.food_src}`;
 
-  const query = JSON.stringify(food).replace('{', "").replace("}", "");
-
-  console.log(query);
-
-  /*
-    insertFood(body, (err, results) => {
-      if (err) {
-        res.send(err);
-      } else {
-        res.json(results);
-      }
-    });
-    */
+  const query = JSON.stringify(food)
+    .replaceAll('":', "=")
+    .replaceAll(',"', ",")
+    .replaceAll('{"', "")
+    .replaceAll("}", "");
+  insertFood(query, (err, results) => {
+    if (err) {
+      res.send(err);
+    } else {
+      res.json(results);
+    }
+  });
 };
 
 // update Food
 export const updateFood = (req, res) => {
   const data = req.body;
+  let body = req.body;
+  const food = JSON.parse(body.food);
+  const category = categories.find(
+    (item) => item.category === food.food_category
+  ).src;
 
-  const file = req.file.path;
+  if (req.body.food_src == undefined) {
+    food.food_src = `${category}/${food.food_src}`;
+  }
+
+  const query = JSON.stringify(food)
+    .replaceAll('":', "=")
+    .replaceAll(',"', ",")
+    .replaceAll('{"', "")
+    .replaceAll("}", "");
 
   const id = req.params.id;
-  updateFoodById(data, id, (err, results) => {
+
+  updateFoodById(query, id, (err, results) => {
     if (err) {
       res.send(err);
     } else {

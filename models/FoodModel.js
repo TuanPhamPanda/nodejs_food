@@ -26,7 +26,7 @@ export const getFoodById = (id,result) => {
 
 // insert Food
 export const insertFood = (data,result) => {
-    db.query("INSERT INTO food SET ?",data, (err,results)=> {
+    db.query("INSERT INTO food SET " + data, (err,results)=> {
         if (err){
             console.log(err);
             result(err,null);
@@ -38,7 +38,7 @@ export const insertFood = (data,result) => {
 
 // update Food
 export const updateFoodById = (data,id,result) => {
-    db.query("UPDATE food SET food_name = ?, food_price = ? WHERE food_id = ?",[data.food_name, data.food_price, id], (err,results)=> {
+    db.query(`UPDATE food SET ${data} WHERE food_id = ${id}`, (err,results)=> {
         if (err){
             console.log(err);
             result(err,null);

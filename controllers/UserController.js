@@ -1,6 +1,6 @@
 import {
     getAllUser,
-    getUserByEmail,
+    login,
     insertUser
 } from "../models/UserModel.js";
 
@@ -17,8 +17,13 @@ export const allUsers=(req,res)=>{
 
 
 // get single user
-export const showAUser = (req,res)=>{
-    getUserByEmail(req.params.email,(err,results)=> {
+export const showAUser = (req,res) => {
+    const query = JSON.stringify(req.body)
+    .replaceAll(':"', "='").replaceAll('"=', " = ")
+    .replaceAll('","', "' AND ")
+    .replaceAll('{"', "").replaceAll('"}', "'")
+
+    login(query,(err,results)=> {
         if (err) {
             res.send(err);
         }else {

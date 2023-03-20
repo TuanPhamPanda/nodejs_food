@@ -53,7 +53,7 @@ router.get("/api/foods/:id", showFoodById);
 router.post("/api/foods",upload.single('food_src'), createFood);
 
 // update Food 
-router.put("/api/foods/:id", updateFood);
+router.put("/api/foods/:id",upload.single('food_src'), updateFood);
 
 // delete Food
 router.delete("/api/foods/:id", deleteFood);
@@ -62,7 +62,7 @@ router.delete("/api/foods/:id", deleteFood);
 
 ////////////////////////// USER ////////////////////////////////
 // get all user
-router.get("/api/users/:email", showAUser);
+router.post("/api/users/", showAUser);
 
 // create account
 router.post("/api/users/", createAccount);

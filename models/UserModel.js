@@ -14,8 +14,8 @@ export const getAllUser = (result) => {
 
 
 // get single user
-export const getUserByEmail = (data,result) => {
-    db.query("SELECT user_id, user_name, user_password FROM user WHERE user_email = ?",[data], (err,results)=> {
+export const login = (data,result) => {
+    db.query(`SELECT * FROM user WHERE ${data}`, (err,results)=> {
         if (err){
             console.log(err);
             result(err,null);
