@@ -1,28 +1,17 @@
-import {
-    getAllUser,
-    login,
-    insertUser
-} from "../models/UserModel.js";
+import { login, insertUser } from "../models/UserModel.js";
+import { encrypted } from "./Encypt.js";
 
-// get all Users
-export const allUsers=(req,res)=>{
-    getAllUser((err,results)=> {
-        if (err) {
-            res.send(err);
-        }else {
-            res.json(results);
-        }
-    });
-};
+export const ShowUser = (req, res) => {
+  const data = req.body;
+  const pass = data.user_password;
 
+  data.user_password = encrypted(pass);
 
-// get single user
-export const showAUser = (req,res) => {
-    const query = JSON.stringify(req.body)
+  const query = JSON.stringify(data)
     .replaceAll(':"', "='").replaceAll('"=', " = ")
     .replaceAll('","', "' AND ")
     .replaceAll('{"', "").replaceAll('"}', "'")
-
+    
     login(query,(err,results)=> {
         if (err) {
             res.send(err);
@@ -33,17 +22,16 @@ export const showAUser = (req,res) => {
 };
 
 // create user
-export const createAccount=(req,res)=>{
-    const data = req.body;
-    insertUser(data,(err,results)=> {
-        if (err) {
-            res.send(err);
-        }else {
-            res.json(results);
-        }
-    });
+export const createAccount = (req, res) => {
+  const data = req.body;
+  const pass = data.user_password;
+  data.user_password = encrypted(pass).toString("base64");
+
+  insertUser(data, (err, results) => {
+    if (err) {
+      res.send(err);
+    } else {
+      res.json(results);
+    }
+  });
 };
-
-
-
-

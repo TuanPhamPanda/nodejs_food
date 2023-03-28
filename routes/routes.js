@@ -9,7 +9,7 @@ import {
 } from "../controllers/FoodController.js";
 
 import {
-    showAUser,
+    ShowUser,
     createAccount
 } from "../controllers/UserController.js";
 
@@ -61,12 +61,10 @@ router.delete("/api/foods/:id", deleteFood);
 
 
 ////////////////////////// USER ////////////////////////////////
-// get all user
-router.post("/api/users/", showAUser);
+router.post("/api/login", ShowUser);
 
 // create account
-router.post("/api/users/", createAccount);
-
+router.post("/api/register", createAccount);
 
 
 ////////////////////////// CART ////////////////////////////////
@@ -91,7 +89,7 @@ router.delete("/api/cartItem/:id", deleteItems);
 
 
 ////////////////////////// Booking ////////////////////////////////
-router.post("/api/booking", createBooking);
+router.post("/api/booking/", createBooking);
 
 
 

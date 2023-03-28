@@ -1,10 +1,12 @@
 import {
     insertBooking
 } from "../models/BookTableModel.js";
+import { format } from "./formatQuery.js";
 
 // create Booking
-export const createBooking=(req,res)=>{
+export const createBooking = (req,res)=>{
     const data = req.body;
+    
     insertBooking(data,(err,results)=> {
         if (err) {
             res.send(err);

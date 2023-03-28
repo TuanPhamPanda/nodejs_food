@@ -107,7 +107,8 @@ export const createFood = (req, res) => {
     .replaceAll(',"', ",")
     .replaceAll('{"', "")
     .replaceAll("}", "");
-  insertFood(query, (err, results) => {
+
+    insertFood(query, (err, results) => {
     if (err) {
       res.send(err);
     } else {
