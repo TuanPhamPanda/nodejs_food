@@ -11,7 +11,7 @@ export const ShowUser = (req, res) => {
     .replaceAll(':"', "='").replaceAll('"=', " = ")
     .replaceAll('","', "' AND ")
     .replaceAll('{"', "").replaceAll('"}', "'")
-    
+    console.log(query);
     login(query,(err,results)=> {
         if (err) {
             res.send(err);
@@ -25,7 +25,7 @@ export const ShowUser = (req, res) => {
 export const createAccount = (req, res) => {
   const data = req.body;
   const pass = data.user_password;
-  data.user_password = encrypted(pass).toString("base64");
+  data.user_password = encrypted(pass);
 
   insertUser(data, (err, results) => {
     if (err) {
