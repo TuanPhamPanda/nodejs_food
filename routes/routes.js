@@ -75,7 +75,7 @@ router.post("/api/cartItem", addItems);
 router.get("/api/cartItem/:user_id/:food_id", getItem);
 
 // get all items by user id
-router.get("/api/cartItem/:id", allItems);
+router.get("/api/cartItem/:user_id", allItems);
 
 // update item qty
 router.put("/api/cartItem/", updateItem);

@@ -7,7 +7,6 @@ export const login = (data,result) => {
             console.log(err);
             result(err,null);
         }else{
-            console.log(results);
             result(null,results[0]);
         }
     });

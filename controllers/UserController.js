@@ -11,7 +11,6 @@ export const ShowUser = (req, res) => {
     .replaceAll(':"', "='").replaceAll('"=', " = ")
     .replaceAll('","', "' AND ")
     .replaceAll('{"', "").replaceAll('"}', "'")
-    console.log(query);
     login(query,(err,results)=> {
         if (err) {
             res.send(err);
