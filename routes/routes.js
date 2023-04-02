@@ -106,7 +106,7 @@ router.get("/api/billstatus/user/:id", getAllBillsByUser);
 router.get("/api/billstatus/bill/:id", getAllBillsByBill);
 router.get("/api/billstatus", getAllBills);
 router.put("/api/billstatus/:id", updateBillStatus);
-router.put("/api/billstatus/paid/:id", updateBillPaid);
+router.put("/api/billstatus/paid/:id", );
 router.put("/api/billstatus/cancel/:id", cancelBillStatus);
 
 

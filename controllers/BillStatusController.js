@@ -8,6 +8,7 @@ import {
     updatePaid,
     cancelStatus
 } from "../models/BillStatusModel.js";
+import { format } from "./formatQuery.js";
 
 // get newest Bill Status
 export const showNewestStatusId=(req,res)=>{
@@ -23,7 +24,7 @@ export const showNewestStatusId=(req,res)=>{
 // create BillStatus
 export const createBillStatus=(req,res)=>{
     const data = req.body;
-    insertBillStatus(data,(err,results)=> {
+    insertBillStatus(format(data),(err,results)=> {
         if (err) {
             res.send(err);
         }else {
