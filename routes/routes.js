@@ -40,8 +40,15 @@ import {
     updateBillPaid,
     cancelBillStatus
 } from "../controllers/BillStatusController.js";
+import { authenToken, refreshToken, logout } from "../middleware/Authentication.js";
 
 const router = express.Router();
+
+router.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 
 // get all Food
 router.get("/api/foods", showFoods);
@@ -58,8 +65,6 @@ router.put("/api/foods/:id",upload.single('food_src'), updateFood);
 // delete Food
 router.delete("/api/foods/:id", deleteFood);
 
-
-
 ////////////////////////// USER ////////////////////////////////
 router.post("/api/login", ShowUser);
 
@@ -69,35 +74,29 @@ router.post("/api/register", createAccount);
 
 ////////////////////////// CART ////////////////////////////////
 // add to cart
-router.post("/api/cartItem", addItems);
+router.post("/api/cartItem",authenToken, addItems);
 
 // get a item in cart
-router.get("/api/cartItem/:user_id/:food_id", getItem);
+router.get("/api/cartItem/:user_id/:food_id", authenToken, getItem);
 
 // get all items by user id
-router.get("/api/cartItem/:user_id", allItems);
+router.get("/api/cartItem/:user_id",authenToken, allItems);
 
 // update item qty
-router.put("/api/cartItem/", updateItem);
+router.put("/api/cartItem/",authenToken, updateItem);
 
 // delete a item in cart
-router.delete("/api/cartItem/:user_id/:food_id", deleteItem);
+router.delete("/api/cartItem/:user_id/:food_id",authenToken, deleteItem);
 
 // delete all items in cart
-router.delete("/api/cartItem/:id", deleteItems);
-
-
+router.delete("/api/cartItem/:id",authenToken, deleteItems);
 
 ////////////////////////// Booking ////////////////////////////////
 router.post("/api/booking/", createBooking);
 
-
-
 ////////////////////////// Bill Details ////////////////////////////////
-router.post("/api/billdetails", createBillDetails);
-router.get("/api/billdetails/:id", getBillDetailsById);
-
-
+router.post("/api/billdetails",authenToken, createBillDetails);
+router.get("/api/billdetails/:id",authenToken, getBillDetailsById);
 
 ////////////////////////// Bill Status ////////////////////////////////
 router.get("/api/billstatus/new", showNewestStatusId);
@@ -109,9 +108,9 @@ router.put("/api/billstatus/:id", updateBillStatus);
 router.put("/api/billstatus/paid/:id", );
 router.put("/api/billstatus/cancel/:id", cancelBillStatus);
 
-
-
-
+//refreshToken
+router.post('/api/refreshToken', refreshToken);
+router.post('/api/logout', logout);
 
 // export default router
 export default router;
