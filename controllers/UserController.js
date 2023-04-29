@@ -17,6 +17,8 @@ export const ShowUser = (req, res, next) => {
     if (err) {
       res.send(err);
     } else {
+      res.json(results)
+      /*
       const dataEncrypt = {
         user_id: results.user_id,
         user_email: results.user_email,
@@ -41,6 +43,7 @@ export const ShowUser = (req, res, next) => {
           res.json({ accessToken, refreshToken });
         }
       });
+      */
     }
   });
 };

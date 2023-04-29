@@ -74,22 +74,22 @@ router.post("/api/register", createAccount);
 
 ////////////////////////// CART ////////////////////////////////
 // add to cart
-router.post("/api/cartItem",authenToken, addItems);
+router.post("/api/cartItem" , addItems);
 
 // get a item in cart
-router.get("/api/cartItem/:user_id/:food_id", authenToken, getItem);
+router.get("/api/cartItem/:user_id/:food_id", getItem);
 
 // get all items by user id
-router.get("/api/cartItem/:user_id",authenToken, allItems);
+router.get("/api/cartItem/:user_id", allItems);
 
 // update item qty
-router.put("/api/cartItem/",authenToken, updateItem);
+router.put("/api/cartItem/", updateItem);
 
 // delete a item in cart
-router.delete("/api/cartItem/:user_id/:food_id",authenToken, deleteItem);
+router.delete("/api/cartItem/:user_id/:food_id", deleteItem);
 
 // delete all items in cart
-router.delete("/api/cartItem/:id",authenToken, deleteItems);
+router.delete("/api/cartItem/:id", deleteItems);
 
 ////////////////////////// Booking ////////////////////////////////
 router.post("/api/booking/", createBooking);

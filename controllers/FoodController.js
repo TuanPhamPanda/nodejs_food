@@ -119,14 +119,13 @@ export const createFood = (req, res) => {
 
 // update Food
 export const updateFood = (req, res) => {
-  const data = req.body;
-  let body = req.body;
+  const body = req.body;
   const food = JSON.parse(body.food);
   const category = categories.find(
     (item) => item.category === food.food_category
   ).src;
 
-  if (req.body.food_src == undefined) {
+  if (body.food_src == undefined) {
     food.food_src = `${category}/${food.food_src}`;
   }
 

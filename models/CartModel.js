@@ -3,7 +3,7 @@ import db from "../config/database.js";
 // get all items by user id
 //page cart
 export const getAllItems = (id, result) => {
-  db.query(`SELECT * FROM cart, user, food WHERE cart.user_id = ${id} AND user.user_id = cart.user_id AND food.food_id = cart.food_id GROUP BY food.food_id, user.user_id`, (err, results) => {
+  db.query(`SELECT * FROM cart, food WHERE cart.user_id = ${id} AND food.food_id = cart.food_id GROUP BY food.food_id`, (err, results) => {
     if (err) {
       console.log(err);
       result(err, null);
@@ -32,6 +32,7 @@ export const getAItem = (user, food, result) => {
 
 // insert new item to cart
 export const insertToCart = (data, result) => {
+  console.log(data);
   db.query("INSERT INTO cart SET " + data, (err, results) => {
     if (err) {
       console.log(err);
