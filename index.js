@@ -19,7 +19,7 @@ app.get("/", function (req, res) {
 
 app.use(router);
 
-app.use(express.static(__dirname + "/images/"));
+app.use(express.static(__dirname + "images"));
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
