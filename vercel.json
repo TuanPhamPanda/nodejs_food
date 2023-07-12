@@ -15,10 +15,5 @@
       "src": "/(.*)",
       "dest": "/"
     }
-  ],
-  "public": {
-    "includeFiles": [
-      "images/**"
-    ]
-  }
+  ]
 }
