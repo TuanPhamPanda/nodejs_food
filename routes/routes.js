@@ -37,7 +37,6 @@ import {
     getAllBillsByBill,
     getAllBills,
     updateBillStatus,
-    updateBillPaid,
     cancelBillStatus
 } from "../controllers/BillStatusController.js";
 import { authenToken, refreshToken, logout } from "../middleware/Authentication.js";
