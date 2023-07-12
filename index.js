@@ -2,6 +2,8 @@ import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import router from "./routes/routes.js";
+import path from 'path';
+const __dirname = path.resolve();
 
 const PORT = process.env.PORT || 8081;
 
