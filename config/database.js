@@ -1,10 +1,10 @@
 import mysql from "mysql2";
 
 const db = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "db_restaurant"
+    host: "db4free.net",
+    user: "database_food",
+    password: "database_food",
+    database: "database_food"
 });
 
 
