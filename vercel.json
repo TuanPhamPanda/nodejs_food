@@ -16,9 +16,5 @@
       "dest": "/"
     }
   ],
-  "public": {
-    "includeFiles": [
-      "images/**"
-    ]
-  }
+  "public": true
 }
